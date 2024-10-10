@@ -22,6 +22,7 @@ body{
 }
 
 
+
 /* ---- HEADER SECTION ---- */
 
 .header{
@@ -34,14 +35,21 @@ body{
     z-index: 10;
     font-size: 1.2rem;
     font-weight: 600;
+    display: flex; /* Cambia a flexbox */
+    flex-direction: row;
+    gap: 0;
+    justify-content: space-around; /* Espacia los elementos */
+    align-items: center; /* Centra verticalmente */
+    padding: 10px 0px;
+    padding-left: 90px; /* Ajusta el padding según sea necesario */
 }
 
 .header__nav{
     padding: 10px 50px ;
-    margin: 0 auto;
     background-color: #fffbf1dd;
     border-radius: 20px;
-    width: clamp(350px, 50%, 500px)
+    width: clamp(350px, 60%, 500px);
+    margin: 0 auto;
 }
 
 .header__nav-list{
@@ -66,6 +74,32 @@ body{
 }
 
 
+.btn-cv {
+    display: inline-block;
+    padding: 10px 12px;
+    font-size: 1rem;
+    background-color: #06463bbb;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px 0px 0px 20px;
+    transition: background-color 0.3s;
+    margin-left: 0;
+}
+
+.btn-cv:hover {
+    background-color: #06463b99;
+}
+
+.btn-cv a{
+    text-decoration: none;
+    color: white;
+}
+
+.hidden{
+    display: hidden
+}
+
+
 /*    Presentacion Style    */
 
 .general{
@@ -82,9 +116,9 @@ body{
 .about, .about2{
     display: flex;
     flex-direction: column;
-    max-width: 80%;
+    max-width: 80vw;
     margin: auto;
-    padding: 20px 0;  
+    padding: 0;  
 }
 
 h1{
@@ -115,32 +149,28 @@ h1{
 }
 
 .about__imgbox, .about2__imgbox{
-    height: clamp(50px, 50vh, 320px);
+    height: 60vh;
+    align-content: center;
     
 }
 
-.about__imgbox{
-    padding-left: 50px;
-}
-
-.about2__imgbox{
-    padding-right: 50px;
+.about__imgbox, .about2__imgbox{
+    padding: 0 50px;
 }
 
 .about__imgbox-img{
     object-fit:contain;
-    height: clamp(50px, 100%, 350px);
+    max-height: clamp(50px, 100%, 350px);
     object-position: top;
-    border-radius: 20%;
+    border-radius: 50%;
     box-shadow: 0px 0px 9px #0002;
 }
 
 .about2__imgbox-img{
     object-fit:contain;
-    height: clamp(50px, 100%, 300px);
+    height: 100%;
     margin: auto;
 }
-
 
 h3{
     font-family: "Titillium Web", sans-serif;
@@ -153,20 +183,20 @@ h3{
 
 /*Presentacion QUERYS*/
 
-@container general (max-width:1050px){
+@container general (max-width:1400px){
     .general{
-        grid-template-rows: 0.6fr 0.40fr 0.7fr 1fr 0.50fr 0.84fr; 
+        grid-template-rows: 0.6fr 0.3fr 0.7fr 1fr 0.40fr 0.6fr; 
     }
     .about__box, .about2__box{
         display: flex;
-        flex-direction: column
+        flex-direction: column-reverse;
     }
 
     .about__imgbox{
         margin: auto;
         height: 60vh;
-        padding-top: 20px;
-        padding-left: 10px;
+        padding: 0px
+
     }
     h3 {
         padding: 0;
@@ -210,15 +240,16 @@ h2{
     justify-content: space-between;
     column-gap: 20px;
     width: 100%;
+    container-name: card;
+    container-type:normal;
 }
 
 .card{
-    width: clamp(180px, 100%, 1200px);
+    width: clamp(250px, 100%, 1200px);
     background-color: var(--card-bg-color);
     margin: 10px 0;
     position: relative;
     border-radius: 20px;
-    
 }
 
 .card:first-child{
@@ -241,7 +272,6 @@ h2{
     line-height: .8
 }
 
-
 .card:hover .card__front{
     transform: perspective(1100px) rotateY(180deg);
 }
@@ -249,7 +279,6 @@ h2{
 .card:hover .card__back{
     transform: perspective(1100px) rotateY(360deg);
 }
-
 
 .card__front{
     transform: perspective(1100px) rotateY(0deg);
@@ -263,6 +292,7 @@ h2{
     height: 100%;
     padding: 20px;
     transform: perspective(1100px) rotateY(180deg);
+    align-content: center;
 }
 
 .card__back span{
@@ -274,6 +304,7 @@ h2{
 
 .card__worker{
     max-height: 170px;
+    min-height: 140px;
     overflow: hidden;
     display: block;
 }
@@ -297,6 +328,29 @@ h2{
     margin: 0;
     display: block;
     font-weight: 600;
+}
+
+
+@media (min-width:1100px) and (max-width: 1470px){
+    .card:nth-child(4){
+        grid-column: span 3 ;
+    }
+}
+
+@media (max-width: 720px){
+    .card:first-child{
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+    .card:nth-child(4){
+        grid-column: span 1 ;
+    }
+    .card__worker{
+        max-height: 200px;
+    }
+    .card:first-child .card__worker{
+        max-height: 200px;
+    }
 }
 
 /*----SKILLS SECTION----*/
@@ -341,7 +395,9 @@ h2{
 }
 .profile__img{
     object-fit: contain;
-    max-width: 95%;
+    max-width: 100%;
+    padding-left: 25px;
+
     
 }
 
@@ -440,6 +496,7 @@ h2{
     }
 }
 
+
 /* ---- CONTACT SECTION ---- */
 
 .contact__container{
@@ -478,19 +535,20 @@ h2{
 
 .contact__logos-item{
     list-style: none;
-    width: 2.4em;
-    height: 2.4em;
+    width: 2.4rem;
+    height: 2.4rem;
     border: 2.3px solid var(--text-color);
     border-radius: 50%;
     text-align: center;
-    padding: 8px;
+    padding: 0.3rem;
+
 
 }
 
 
 .icon {
-    width: 1.6em;
-    height: 1.6em;
+    width: 1.6rem;
+    height: 1.6rem;
     vertical-align: -0.125em;
     color: var(--text-color);
 }
@@ -507,5 +565,59 @@ h2{
 .iconfooter{
     width: .8em;
     height: .8em;
+}
+
+@media screen and (max-width:600px) {
+    .general{
+        grid-template-rows: 0.3fr 0.3fr 0.6fr 0.55fr 0.30fr 0.4fr; 
+        text-align: center;
+    }
+    h3,p,span{
+        text-align: center;
+    }
+    body, .header{
+        font-size: 1rem;
+    }
+    h1{
+        font-size: 5rem;
+    }
+    h2{
+        font-size: 4rem;
+    }
+    h3{
+        font-size: 2rem;
+    }
+
+    .header{
+        flex-direction: column;
+        padding: 10px;
+        gap: 0.8vh;
+    }
+
+    .btn-cv {
+        margin: 8px;
+        padding: 8px;
+        font-size: 0.8rem;
+        border-radius: 20px;
+
+    }
+
+    .projects{
+        padding-top: 20px;
+    }
+    .contact__logos{
+        padding: 0;
+        margin: 0;
+        width: 100vw;;
+    }
+    .contact__logos-item{
+        padding: 5px;
+    
+    }
+    .about__imgbox{
+        height: 35vh;
+        margin: auto;
+    }
+    
 }
 
